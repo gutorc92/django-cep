@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 
-import cep
 
 import os
+import cep
 import codecs
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from distutils.core import setup, find_packages
-
+from setuptools import setup, find_packages
 
 with open('README.rst', 'rb') as readme:
     readme_text = readme.read().decode('utf-8')

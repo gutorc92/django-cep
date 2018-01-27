@@ -1,22 +1,22 @@
 import json
-from django.forms.widgets import TextInput
+from django.forms.widgets import Widget
 from django.utils.safestring import mark_safe
 
 
-class CEPInput(TextInput):
-    def __init__(self, *args, **kwargs):
-        self.address = kwargs.pop('address')
-        super(CEPInput, self).__init__(*args, **kwargs)
+class BRAddressWidget(Widget):
+    allow_multiple_selected = True
+    template_name = "cep/field.html"
+    input_type = None
 
-    def render(self, name, value, attrs):
-        # define input class based on user definition of attrs. rstrip takes spaces in the end of the string.
-        self.attrs['class'] = ('zip-field %s' % self.attrs.get('class', '')).rstrip()
-        output = super(CEPInput, self).render(name, value, attrs)
-        # insert address json in the rendering
-        if self.address is not None:
-            js_dict = json.dumps(self.address)
-            output += u'<script type="text/javascript">var address = %s;</script>' % js_dict
-        return mark_safe(output)
+    def __init__(self,attrs=None, *args, **kwargs):
+        super().__init__(attrs)
 
+
+    def id_for_label(self, id_):
+        return id_
+
+    def use_required_attribute(self, initial):
+        return not self.is_hidden
+    
     class Media:
         js = ('cep/js/cep.js',)
