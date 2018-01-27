@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
-import urllib2
+import urllib.request
 import re
 from xml.dom import minidom
 
 def cep(numero):
     url = 'http://cep.republicavirtual.com.br/web_cep.php?formato=' \
             'xml&cep=%s' % str(numero)
-    dom = minidom.parse(urllib2.urlopen(url))
+    dom = minidom.parse(urllib.request.urlopen(url))
 
     tags_name = ('uf',
                 'cidade',
