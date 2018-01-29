@@ -8,3 +8,4 @@ class BRAddress(models.Model):
     district =models.CharField(_('District'), max_length=50, blank=True) 
     city = models.CharField(_('City'), max_length=100, blank=True)
     state = models.CharField(_('State'), max_length=30, blank=True)
+    zip_code = models.PositiveIntegerField(_('ZipCode'))

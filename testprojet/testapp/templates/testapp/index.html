@@ -1,7 +1,16 @@
 <html>
-
+    <head>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
     <body>
-    {{ form }}
+    <form class="form-horizontal" action="/" method = 'POST'>
+            {% csrf_token %}        
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-success btn-block" type = 'submit'>Cadastrar</button>
+      </form>
+
     </body>
 
 </html>
