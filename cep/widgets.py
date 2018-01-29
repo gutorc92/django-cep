@@ -66,5 +66,8 @@ class BRAddressWidget(MultiWidget):
         context['widget']['js_code'] = mark_safe(output)
         return context
 
+    def value_from_datadict(self, data, files, name):
+        return [widget.value_from_datadict(data, files, widget.attrs['name']) for i, widget in enumerate(self.widgets)]
+
     class Media:
         js = ('cep/js/cep.js',)

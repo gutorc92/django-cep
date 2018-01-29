@@ -19,7 +19,13 @@ class BRAddressField(Field):
         super().__init__(**kwargs)
 
     def to_python(self, value):
-        return value
+        b = BRAddress()
+        b.street = value[0]
+        b.district = value[1]
+        b.city = value[2]
+        b.state = value[3]
+        b.zip_code = value[4] 
+        print(value)
+        return b
 
-    def clean(self):
-        pass
+    

@@ -1,4 +1,5 @@
 from django.utils.translation import gettext as _
+from django.contrib import messages
 from django.shortcuts import render
 from django.views import View
 from .forms import TestForm
@@ -14,6 +15,7 @@ class TestAppView(View):
         form = TestForm(data=request.POST)
         if form.is_valid():
             form.save()
-            messages.success(requets, _("Test registered with sucess"))
+            form = TestForm()
+            messages.success(request, _("Test registered with sucess"))
         return render(request, 'testapp/index.html', {'form':form})
 
