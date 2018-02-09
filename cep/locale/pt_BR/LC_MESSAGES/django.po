@@ -24,7 +24,7 @@ msgstr "Digite um cep válido"
 
 #: models.py:7 widgets.py:20
 msgid "Street"
-msgstr "Rua"
+msgstr "Logradouro"
 
 #: models.py:8 widgets.py:24
 msgid "District"
