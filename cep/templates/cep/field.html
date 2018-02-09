@@ -1,7 +1,7 @@
 {% spaceless %}
-{% for widget in widget.subwidgets %}
+{% for widget, label in widget.subwidgets %}
     <div class='test'>
-    {{ w.attrs }}
+    <label> {{ label }} </label>
     {% include widget.template_name %}
     </div>
 {% endfor %}

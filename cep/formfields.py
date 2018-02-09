@@ -16,16 +16,16 @@ class BRAddressField(Field):
     }
 
     def __init__(self, *, zip_code='', **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(**kwargs) 
 
+    
     def to_python(self, value):
         b = BRAddress()
-        b.street = value[0]
-        b.district = value[1]
-        b.city = value[2]
-        b.state = value[3]
-        b.zip_code = value[4] 
-        print(value)
+        b.street = value[1]
+        b.district = value[2]
+        b.city = value[3]
+        b.state = value[4]
+        b.zip_code = value[0] 
         return b
 
     
