@@ -14,29 +14,31 @@ class BRAddressWidget(MultiWidget):
         widgets = (TextInput(attrs={'name':'zip_code',
                                      'id':'id_zip_code_field',
                                      'class': 'zip-field',
-                                     'label': _('Zip-Code')}),
+                                     'label': _('Zip-Code'),
+                                     'oninvalid': "this.setCustomValidity('CEP é obrigatório')", 'oninput':"setCustomValidity('')"}),
+
                    TextInput(attrs={'name':'street',
                                     'id':'id_street_field',
                                     'label': _('Street'),
-                                    }), 
+                                    'oninvalid': "this.setCustomValidity('Logradouro é obrigatório')", 'oninput':"setCustomValidity('')"}),
                    TextInput(attrs={'name':'district',
                                     'id':'id_distric_field',
                                     'label': _('District'),
-                                    }),
+                                    'oninvalid': "this.setCustomValidity('Bairro é obrigatório')", 'oninput':"setCustomValidity('')"}),
                    TextInput(attrs={'name':'city',
                                     'id':'id_city_field',
                                     'label': _('City'),
-                                    }), 
+                                    'oninvalid': "this.setCustomValidity('Cidade é obrigatória')", 'oninput':"setCustomValidity('')"}),
                    TextInput(attrs={'name':'state',
                                     'id':'id_state_field',
                                     'label': _('State'),
-                                    }), 
+                                    'oninvalid': "this.setCustomValidity('Estado é obrigatório')", 'oninput':"setCustomValidity('')"}),
                    )
 
         super().__init__(widgets)
 
     def decompress(self, value):
-        if isinstance(value,BRAddress): 
+        if isinstance(value,BRAddress):
             return [value.zip_code, value.street, value.district, value.city, value.state]
         else:
             return ['','','','','']
@@ -54,10 +56,10 @@ class BRAddressWidget(MultiWidget):
                 widget.is_localized = self.is_localized
         # value is a list of values, each corresponding to a widget
         # in self.widgets.
-        
+
         if not isinstance(value, list):
             value = self.decompress(value)
-       
+
         final_attrs = context['widget']['attrs']
         input_type = final_attrs.pop('type', None)
         id_ = final_attrs.get('id')
@@ -80,7 +82,7 @@ class BRAddressWidget(MultiWidget):
             if 'class' in widget.attrs:
                 widget_attrs['class'] = widget.attrs['class']
             if 'label' in widget.attrs:
-                labels.append(widget.attrs.get('label')) 
+                labels.append(widget.attrs.get('label'))
             else:
                 labels.append('')
             subwidgets.append(widget.get_context(widget_name, widget_value, widget_attrs)['widget'])
